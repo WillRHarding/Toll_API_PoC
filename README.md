@@ -19,8 +19,15 @@ Next was TollGuru. I've used them before and they give a free trial to play with
 
 I used API Gateway to configure the connections between my site and the Lambda function. I originally had set the API to a POST, my thinking being that I was submitting a scenario name, therefore it counted as a POST. Tinkering wth CORS for hours (or days...) eventually led to a realsation that I can use the scenario name as a parameter in the URL, and switched the API to a GET, sidestepping CORS. 
 
+**Other Services**
+
+Every new service I encountered was like climbing a mountain. I had to learn how to add layers to Lambda functions to add a package, configure API logging for CloudWatch, create a GitHub repo to store the web page. There's so much more to be done before it could be considered a complete proof-of-concept, but I'm proud of what I've achieved given where I started.
+
 **Visit Counter**
 
-The visitor counter is comprised of a GET request that triggers a Lambda function to add a record to a DynamoDB table and return the count. For some extra flare I set up a domain I've had for a while using a DNS 
+
+As a bonus, the visitor counter is comprised of a GET request that triggers a Lambda function to add a record to a DynamoDB table and return the count. I's what's left of the Cloud Resume Challenge I completed - a structured project for complete newbies.
 ![image](https://github.com/WillRHarding/Toll_API_PoC/assets/138053790/f8d49e11-84aa-4423-ad9a-36d816d1a65c)
+
+
 
