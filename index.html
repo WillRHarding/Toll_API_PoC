@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 1em;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <header>
+        <h1>Your Website</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="CloudChallenge.html">Cloud Resume Challenge</a>
+        <a href="FileUpload.html">File Upload Project</a>
+    </nav>
+
+    <main>
+        <h2>Welcome to My Website</h2>
+        <p>This will serve as a </p>
+        <!-- Add your content here -->
+    </main>
+
+    <footer>
+        <div id="visitorCountMessage">Loading visitor count...</div>
+
+<!-- Use defer attribute to ensure script execution after HTML content parsing -->
+<script defer>
+    // Replace 'https://api.example.com/endpoint' with your actual API endpoint
+    const apiUrl = 'https://v3hxtkr3rb.execute-api.eu-west-2.amazonaws.com/count';
+
+    // Select the HTML element where you want to display the visitor count
+    const visitorCountMessageElement = document.getElementById('visitorCountMessage');
+
+    async function fetchData() {
+        try {
+            // Make a GET request to the API endpoint
+            const response = await fetch(apiUrl);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            // Extract visitor count from the API response
+            const data = await response.json();
+            const visitorCount = data.visitorCount;
+
+            // Display the visitor count in the HTML element
+            if (visitorCount === 0) {
+                visitorCountMessageElement.textContent = 'No visitors yet.';
+            } else {
+                visitorCountMessageElement.textContent = `Visitor Count: ${visitorCount}`;
+            }
+        } catch (error) {
+            // Handle errors during the API call
+            console.error('Error during API call:', error);
+            visitorCountMessageElement.textContent = 'Error fetching visitor count';
+        }
+    }
+
+    // Call the fetchData function when the DOM content is loaded
+    document.addEventListener('DOMContentLoaded', fetchData);
+</script>        
+    </footer>
+
+</body>
+</html>
