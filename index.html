@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Will Harding - Cloud Project Site</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -52,21 +52,69 @@
 
 
     <header>
-        <h1>Your Website</h1>
+        <h1>Pin Routes Web App PoC</h1>
     </header>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="CloudChallenge.html">Cloud Resume Challenge</a>
-        <a href="FileUpload.html">File Upload Project</a>
+
     </nav>
 
     <main>
-        <h2>Welcome to My Website</h2>
-        <p>This will serve as a </p>
+        <h2>Enter a scenario name into the box and click the button.</h2>
+        <p></p>
+	<button onclick="sendAPIRequest()">Send API Request</button>
+
         <!-- Add your content here -->
+        <textarea id="textbox" rows="4" cols="50"></textarea><br><br>
+        <p>The cost of this route is: £<div id="response"></div>. </p>
+        
     </main>
 
+
+
+
+    <script>
+        function sendAPIRequest() {
+            // Get the contents of the text box
+            var content = document.getElementById("textbox").value;
+
+            // Define your API endpoint
+            var endpoint = "https://je1qxxh9pb.execute-api.eu-west-2.amazonaws.com/scenario";
+
+            // Append the content to the endpoint URL as query parameters
+            var url = endpoint + "?content=" + encodeURIComponent(content);
+
+            // Prepare the request
+            var request = new XMLHttpRequest();
+
+            // Set up the request method and endpoint
+            request.open("GET", url, true);
+
+            // Set up the callback function for when the request completes
+            request.onload = function() {
+                // Check if the request was successful
+                if (request.status >= 200 && request.status < 400) {
+                    // Request was successful
+                    console.log("API Response:", request.responseText);
+
+                    // Display the response on the web page
+                    var responseDiv = document.getElementById("response");
+                    responseDiv.textContent = "Response: " + request.responseText;
+                } else {
+                    // Request failed
+                    console.error("Error:", request.status, request.statusText);
+                }
+            };
+
+            // Set up the callback function for if there's an error with the request
+            request.onerror = function() {
+                console.error("Request failed");
+            };
+
+            // Send the request
+            request.send();
+        }
+    </script>
     <footer>
         <div id="visitorCountMessage">Loading visitor count...</div>
 
