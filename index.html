@@ -97,15 +97,20 @@
                     // Request was successful
                     console.log("API Response:", request.responseText);
 
-                    // Display the response on the web page
+                    // Parse the API response as JSON
+                    var jsonResponse = JSON.parse(request.responseText);
+
+                    // Extract the totalTollCost from the response
+                    var totalTollCost = jsonResponse.totalTollCost;
+
+                    // Display the totalTollCost on the web page
                     var responseDiv = document.getElementById("response");
-                    responseDiv.textContent = "Response: " + request.responseText;
+                    responseDiv.textContent = "Total Toll Cost: " + totalTollCost;
                 } else {
                     // Request failed
                     console.error("Error:", request.status, request.statusText);
                 }
             };
-
             // Set up the callback function for if there's an error with the request
             request.onerror = function() {
                 console.error("Request failed");
