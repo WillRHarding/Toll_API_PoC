@@ -26,7 +26,7 @@ Every new service I encountered was like climbing a mountain. I had to learn how
 **Visit Counter**
 
 
-As a bonus, the visitor counter is comprised of a GET request that triggers a Lambda function to add a record to a DynamoDB table and return the count. I's what's left of the Cloud Resume Challenge I completed - a structured project for complete newbies.
+As a bonus, the visitor counter is comprised of a GET request that triggers a Lambda function to add a record to a DynamoDB table and return the count. It's what's left of the Cloud Resume Challenge I completed - a structured project for complete newbies.
 ![image](https://github.com/WillRHarding/Toll_API_PoC/assets/138053790/f8d49e11-84aa-4423-ad9a-36d816d1a65c)
 
 
