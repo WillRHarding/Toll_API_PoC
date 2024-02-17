@@ -9,7 +9,7 @@ This my first project using 3rd party APIs. Toll Guru are a company that provide
 
 ![image](https://github.com/WillRHarding/Toll_API_PoC/assets/138053790/33e223b6-96c3-4f5f-9be4-820a01568638)
 
-I should say from the beginning - I am not, nor do I want to be, a web designer. The site is bare bones and I got most of the HTML from ChatGPT. I just needed a front end to show that I could achieve what I set out. 
+I used ChatGPT to hep with most of the front end - I'm not looking for a beautiful website, I just want it to work. hence the basic look.
 
 I started with the Lambda function. With help from Postman I set up the OAuth for Pin Routes and could request export data for the dev-testing environment by specifying the scenario name. 
 
