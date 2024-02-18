@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will Harding - Cloud Projects</title>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 1em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 1em;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <header>
+        <h1>Will Harding - Cloud Projects</h1>
+    </header>
+
+    <nav>
+        <h3>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+
+        </h3>
+    </nav>
+
+    <main>
+        <h2>Pin Routes Toll Cost Version 2</h2>
+        <p>I put all the pieces together for the last project and was proud of what i had done. I then went about trying to break it. Turns out the tollcost API is slower then anticipated, so for Pin Routes scenarios with more than around 20 routes, the API Gateway times out and the connection closes.<br>So I started playing with WebSockets. This opens a connection and keeps it open, and now the limiting factor is the Lambda function timeout (15 minutes - more than enough)<br>When this page loads a connection is opened, and when the scenario name is sent it triggers a Lambda function.<br>
+        Type in a scenario identifier. The request will take a few seconds to complete.</p>
+            
+        <textarea id="textbox" rows="2" cols="25"></textarea><br>
+        <button onclick="sendMessage()">Get Toll Cost</button>
+        <p><div id="response"></div> </p>
+        
+    </main>
+
+    <h1>WebSocket Example</h1>
+    <div id="messages"></div>
+    <input type="text" id="scenarioInput" placeholder="Enter scenario name">
+    <button onclick="sendMessage()">Send Message</button>
+
+    <script>
+        // Create a WebSocket connection
+        const socket = new WebSocket('wss://puc1dragr3.execute-api.eu-west-2.amazonaws.com/production/');
+
+        // Function to send a message
+        function sendMessage() {
+            const scenarioInput = document.getElementById('scenarioInput');
+            const scenarioName = scenarioInput.value;
+
+            // Construct the JSON string
+            const jsonMessage = JSON.stringify({ action: 'sendMessage', scenario: scenarioName });
+
+            // Send the JSON string
+            socket.send(jsonMessage);
+
+            // Clear the input field after sending
+            scenarioInput.value = '';
+        }
+
+        // When data is received from the server
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server:', event.data);
+            // Display the received message on the page
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML += '<p>' + event.data + '</p>';
+        });
+
+        // When an error occurs
+        socket.addEventListener('error', function (event) {
+            console.error('WebSocket error:', event);
+        });
+
+        // When the connection is closed
+        socket.addEventListener('close', function (event) {
+            console.log('WebSocket connection closed:', event);
+        });
+    </script>
+<footer>
+
+</footer>
+
+</body>
+</html>
