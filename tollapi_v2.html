@@ -65,20 +65,18 @@
     </nav>
 
     <main>
-        <h2>Pin Routes Toll Cost Version 2</h2>
+        <h2>WebSockets Toll Cost</h2>
         <p>I put all the pieces together for the last project and was proud of what i had done. I then went about trying to break it. Turns out the tollcost API is slower then anticipated, so for Pin Routes scenarios with more than around 20 routes, the API Gateway times out and the connection closes.<br>So I started playing with WebSockets. This opens a connection and keeps it open, and now the limiting factor is the Lambda function timeout (15 minutes - more than enough)<br>When this page loads a connection is opened, and when the scenario name is sent it triggers a Lambda function.<br>
         Type in a scenario identifier. The request will take a few seconds to complete.</p>
-            
-        <textarea id="textbox" rows="2" cols="25"></textarea><br>
-        <button onclick="sendMessage()">Get Toll Cost</button>
-        <p><div id="response"></div> </p>
-        
-    </main>
 
-    <h1>WebSocket Example</h1>
     <div id="messages"></div>
     <input type="text" id="scenarioInput" placeholder="Enter scenario name">
     <button onclick="sendMessage()">Send Message</button>
+          
+
+        
+    </main>
+
 
     <script>
         // Create a WebSocket connection
